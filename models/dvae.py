@@ -1,7 +1,7 @@
 import torch.nn as nn
 import torch
 import torch.nn.functional as F
-from knn_cuda import KNN
+#from knn_cuda import KNN
 from pointnet2_ops import pointnet2_utils
 from .build import MODELS
 from utils import misc
@@ -9,10 +9,11 @@ from extensions.chamfer_dist import ChamferDistanceL1, ChamferDistanceL2
 # from extensions.emd import emd
 from utils.checkpoint import get_missing_parameters_message, get_unexpected_parameters_message
 from utils.logger import *
+from utils.knn_torch import KNN
 
 
 
-from knn_cuda import KNN
+#from knn_cuda import KNN
 knn = KNN(k=4, transpose_mode=False)
 
 
@@ -64,7 +65,7 @@ class DGCNN(nn.Module):
             assert idx.shape[1] == k
             idx_base = torch.arange(0, batch_size, device=x_q.device).view(-1, 1, 1) * num_points_k
             idx = idx + idx_base
-            idx = idx.view(-1)
+            idx = idx.reshape(-1)
         num_dims = x_k.size(1)
         x_k = x_k.transpose(2, 1).contiguous()
         feature = x_k.view(batch_size * num_points_k, -1)[idx, :]

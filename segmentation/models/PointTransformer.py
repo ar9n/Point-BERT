@@ -5,7 +5,8 @@ from timm.models.layers import DropPath, trunc_normal_
 from utils import get_missing_parameters_message, get_unexpected_parameters_message
 
 from pointnet2_ops import pointnet2_utils
-from knn_cuda import KNN
+#from knn_cuda import KNN
+from utils.knn_torch import KNN
 
 def fps(data, number):
     '''
