@@ -26,10 +26,10 @@ kldweight: {
 
 dataset : {
   train : { _base_: cfgs/dataset_configs/ABC.yaml, 
-            others: {subset: 'train', npoints: 1024}},
-  val : { _base_: cfgs/dataset_configs/ABC.yaml, 
+            others: {subset: 'train', npoints: 1024, whole: True, chunks: 1}},
+  val : { _base_: cfgs/dataset_configs/ShapeNet-55.yaml, 
             others: {subset: 'test', npoints: 1024}},
-  test : { _base_: cfgs/dataset_configs/ABC.yaml, 
+  test : { _base_: cfgs/dataset_configs/ShapeNet-55.yaml, 
             others: {subset: 'test', npoints: 1024}}}
 model : {
   NAME: DiscreteVAE, 

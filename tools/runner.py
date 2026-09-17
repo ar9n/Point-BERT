@@ -119,7 +119,7 @@ def run_net(args, config, train_writer=None, val_writer=None):
             data_time.update(time.time() - batch_start_time)
             npoints = config.dataset.train._base_.N_POINTS
             dataset_name = config.dataset.train._base_.NAME
-            if dataset_name == 'ShapeNet':
+            if dataset_name in ['ShapeNet', 'ABC']:
                 points = data.cuda()
             else:
                 raise NotImplementedError(f'Train phase do not support {dataset_name}')
